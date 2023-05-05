@@ -1,15 +1,17 @@
-let buttonVal = 0
-let item = 0
 function button () {
     buttonVal = pins.analogReadPin(AnalogPin.P2)
     if (buttonVal < 256) {
         item = 1
+        radio.sendNumber(1)
     } else if (buttonVal < 597) {
         item = 2
+        radio.sendNumber(2)
     } else if (buttonVal < 725) {
         item = 3
+        radio.sendNumber(3)
     } else if (buttonVal < 793) {
         item = 4
+        radio.sendNumber(4)
     } else if (buttonVal < 836) {
         item = 5
     } else if (buttonVal < 938) {
@@ -18,6 +20,9 @@ function button () {
         item = 0
     }
 }
+let item = 0
+let buttonVal = 0
+radio.setGroup(44)
 basic.forever(function () {
     button()
     if (item) {
